@@ -14,7 +14,7 @@
 \url{https://tools.ages.pucrs.br/agendamento-de-visitas-de-escola-ao-museu/Wiki/-/wikis/home} - Link para o repositório do Código Fonte do Projeto referente ao wiki (documentação)
 
 \subsection{Banco de Dados Utilizado}
-  A tecnologia selecionada para o banco de dados do projeto foi o PostgreSQL, que utiliza o modelo relacional. Essa abordagem foi escolhida por facilitar a criação de vínculos e a manutenção da integridade entre as entidades do sistema. O esquema lógico relacional e o modelo conceitual, elaborados pela equipe, estão representados nas Figuras 2 e 3, respectivamente.
+  A tecnologia selecionada para o banco de dados do projeto foi o PostgreSQL \cite{postgresql}, que utiliza o modelo relacional. Essa abordagem foi escolhida por facilitar a criação de vínculos e a manutenção da integridade entre as entidades do sistema. O esquema lógico relacional e o modelo conceitual, elaborados pela equipe, estão representados nas Figuras 2 e 3, respectivamente.
 
 \begin{figure}[H]
     \centering
@@ -48,7 +48,7 @@
 
 Além do diagrama de aplicações, nós também elaboramos um diagrama para a nossa estratégia de implantação (deploy), que está ilustrado na Figura 5. Nosso fluxo de desenvolvimento adota o uso de branches específicas para cada tarefa, que integramos posteriormente à branch de desenvolvimento (dev) por meio de um merge request.
 
-    Uma vez que o código é integrado à dev, ele passa por uma bateria de testes automatizados e por um processo de revisão de código (code review) que é realizado pelos nossos colegas mais experientes (AGES III e IV), para garantir a estabilidade e a qualidade. Assim que o código é aprovado, nós o mesclamos da dev para a branch principal (main). Essa ação aciona nosso pipeline de implantação, que executa os testes finais, gera uma imagem Docker da aplicação e a publica no ambiente de produção na \ac{aws}.
+    Uma vez que o código é integrado à dev, ele passa por uma bateria de testes automatizados e por um processo de revisão de código (code review) que é realizado pelos nossos colegas mais experientes (AGES III e IV), para garantir a estabilidade e a qualidade. Assim que o código é aprovado, nós o mesclamos da dev para a branch principal (main). Essa ação aciona nosso pipeline de implantação, que executa os testes finais, gera uma imagem Docker \cite{docker} da aplicação e a publica no ambiente de produção na \ac{aws}.
 
 \begin{figure}[H]
     \centering
@@ -67,7 +67,7 @@ Além do diagrama de aplicações, nós também elaboramos um diagrama para a no
 Link da Wiki: \url{https://tools.ages.pucrs.br/agendamento-de-visitas-de-escola-ao-museu/Wiki/-/wikis/mockups}
 
 \subsection{Tecnologias Utilizadas}
-    Para o desenvolvimento do backend, nós escolhemos a linguagem Node.js em conjunto com o framework Nest.js, principalmente por sua documentação ser bastante abrangente e didática. Adicionalmente, utilizamos o Prisma, um \ac{orm}, como ferramenta para simplificar nossa interação com o banco de dados.    No frontend, desenvolvemos a aplicação com a linguagem TypeScript e o framework React para a criação das interfaces e dos componentes visuais. A relação completa das tecnologias que empregamos no projeto está ilustrada na Figura 6.
+    Para o desenvolvimento do backend, nós escolhemos a linguagem Node.js \cite{nodejs} em conjunto com o framework Nest.js \cite{nestjs}, principalmente por sua documentação ser bastante abrangente e didática. Adicionalmente, utilizamos o Prisma \cite{prisma}, um \ac{orm}, como ferramenta para simplificar nossa interação com o banco de dados.    No frontend, desenvolvemos a aplicação com a linguagem TypeScript \cite{typescript} e o framework React \cite{react} para a criação das interfaces e dos componentes visuais. A relação completa das tecnologias que empregamos no projeto está ilustrada na Figura 6.
 
 \begin{figure}[H]
     \centering

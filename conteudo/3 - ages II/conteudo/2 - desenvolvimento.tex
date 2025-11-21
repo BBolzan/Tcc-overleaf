@@ -62,9 +62,9 @@ A documentação completa, que orientou nosso desenvolvimento, também está ver
 
 \indent \textbf{Firebase Authentication:} Para o gerenciamento de identidade dos usuários, implementamos o Firebase Authentication com suporte a autenticação anônima. Essa abordagem permite que os participantes entrem nas sessões sem necessidade de criar contas permanentes, apenas escolhendo um identificador de perfil para a sessão atual.
 
-\indent \textbf{Fluxo de Integração:} A integração entre os dois bancos de dados funciona da seguinte forma: (i) no início da sessão, o backend cria uma nova sessão no Firebase com os dados importados do PostgreSQL (sprint, histórias, tarefas); (ii) durante a votação em tempo real, os usuários se conectam à sessão via Firebase Authentication e seus votos são sincronizados instantaneamente através do Realtime Database para todos os participantes; (iii) na finalização, quando a votação é concluída e o voto final é registrado, os dados são persistidos permanentemente no PostgreSQL e a sessão pode ser removida do Firebase.
+\indent \textbf{Fluxo de Integração:} A integração entre os dois bancos de dados funciona da seguinte forma: (i) no início da sessão, o backend cria uma nova sessão no Firebase \cite{firebase} com os dados importados do PostgreSQL \cite{postgresql} (sprint, histórias, tarefas); (ii) durante a votação em tempo real, os usuários se conectam à sessão via Firebase Authentication e seus votos são sincronizados instantaneamente através do Realtime Database para todos os participantes; (iii) na finalização, quando a votação é concluída e o voto final é registrado, os dados são persistidos permanentemente no PostgreSQL \cite{postgresql} e a sessão pode ser removida do Firebase \cite{firebase}.
 
-\indent \textbf{Segurança e Controle de Acesso:} As regras de segurança do Firebase foram configuradas para garantir a integridade dos dados e o controle adequado de permissões. O backend possui permissão exclusiva para criar e gerenciar sessões, o aplicativo móvel pode visualizar sessões e registrar votos individuais, e a aplicação web, além das permissões do móvel, pode definir o voto final consolidado. Essa arquitetura híbrida permite que aproveitemos as vantagens de ambas as tecnologias: a robustez e estrutura do PostgreSQL para dados persistentes, e a sincronização em tempo real do Firebase para as interações dinâmicas durante as sessões de Planning Poker.
+\indent \textbf{Segurança e Controle de Acesso:} As regras de segurança do Firebase \cite{firebase} foram configuradas para garantir a integridade dos dados e o controle adequado de permissões. O backend possui permissão exclusiva para criar e gerenciar sessões, o aplicativo móvel pode visualizar sessões e registrar votos individuais, e a aplicação web, além das permissões do móvel, pode definir o voto final consolidado. Essa arquitetura híbrida permite que aproveitemos as vantagens de ambas as tecnologias: a robustez e estrutura do PostgreSQL \cite{postgresql} para dados persistentes, e a sincronização em tempo real do Firebase \cite{firebase} para as interações dinâmicas durante as sessões de Planning Poker.
 
 \subsection{Arquitetura Utilizada}
 \indent Para o backend, nós estruturamos o projeto com base nos princípios da Clean Architecture, utilizando uma arquitetura em camadas. Nossa organização de arquivos (ficheiros) ficou caracterizada da seguinte forma:
@@ -103,7 +103,7 @@ A documentação completa, que orientou nosso desenvolvimento, também está ver
 \subsection{Tecnologias Utilizadas}
 \indent Para o backend do nosso projeto, nós escolhemos a linguagem Node.js \cite{nodejs} com o framework Express.js \cite{express}. Para facilitar o desenvolvimento e a interação com o banco de dados, utilizamos o Prisma \cite{prisma} como \ac{orm}. Adotamos também o Swagger \cite{swagger} para documentar nossas rotas e padronizar o projeto.
 
-\indent No frontend, optamos por usar TypeScript \cite{typescript} em ambas as frentes. Para a aplicação web, utilizamos o framework React.js \cite{react}. Já para a aplicação mobile, escolhemos o React Native em conjunto com o Expo \cite{expo}, que nos auxiliou a agilizar o desenvolvimento e os testes.
+\indent No frontend, optamos por usar TypeScript \cite{typescript} em ambas as frentes. Para a aplicação web, utilizamos o framework React.js \cite{react}. Já para a aplicação mobile, escolhemos o React Native \cite{reactnative} em conjunto com o Expo \cite{expo}, que nos auxiliou a agilizar o desenvolvimento e os testes.
 
 \indent A seguir, apresentamos uma breve descrição de cada uma das principais tecnologias que utilizamos neste projeto:
 
@@ -116,9 +116,9 @@ A documentação completa, que orientou nosso desenvolvimento, também está ver
     
     \item \textbf{Node.js} \cite{nodejs}: Foi a runtime que escolhemos para executar nosso código JavaScript no lado do servidor.
     
-    \item \textbf{Expo} \cite{expo}: Essa ferramenta foi essencial em nosso desenvolvimento mobile com React Native, pois oferece componentes e \ac{api} pré-construídos que aceleraram nosso trabalho.
+    \item \textbf{Expo} \cite{expo}: Essa ferramenta foi essencial em nosso desenvolvimento mobile com React Native \cite{reactnative}, pois oferece componentes e \ac{api} pré-construídos que aceleraram nosso trabalho.
     
-    \item \textbf{React Native}: Escolhemos este framework para desenvolver o aplicativo mobile, pois ele nos permitiu usar uma única base de código para iOS e Android, economizando tempo.
+    \item \textbf{React Native} \cite{reactnative}: Escolhemos este framework para desenvolver o aplicativo mobile, pois ele nos permitiu usar uma única base de código para iOS e Android, economizando tempo.
     
     \item \textbf{Tailwind CSS} \cite{tailwind}: Para a estilização da aplicação web, utilizamos o Tailwind \ac{css}, uma estrutura que nos permitiu criar interfaces modernas e responsivas de forma ágil.
     
