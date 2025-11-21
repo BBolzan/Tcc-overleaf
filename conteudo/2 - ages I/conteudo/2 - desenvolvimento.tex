@@ -3,6 +3,7 @@
 \subsection{Repositório do Código Fonte do Projeto}
   O código-fonte do projeto está organizado em repositórios distintos. Três deles compõem a aplicação principal: o frontend do formulário de agendamento, o frontend do painel administrativo e o backend. Há também um repositório dedicado a DevOps, utilizado pela equipe para a configuração do ambiente de desenvolvimento local. A documentação do projeto pode ser encontrada na página da wiki. Os respectivos repositórios podem ser acessados nos seguintes links:
 
+{\raggedright
 \url{https://tools.ages.pucrs.br/agendamento-de-visitas-de-escola-ao-museu/frontend-formulario} - Link para o repositório do Código Fonte do Projeto referente ao formulário (frontend)
 
 \url{https://tools.ages.pucrs.br/agendamento-de-visitas-de-escola-ao-museu/frontend-administrativo} - Link para o repositório do Código Fonte do Projeto referente ao dashboard administrativo (frontend)
@@ -12,6 +13,7 @@
 \url{https://tools.ages.pucrs.br/agendamento-de-visitas-de-escola-ao-museu/devops} - Link para o repositório do Código Fonte do Projeto referente ao devops
 
 \url{https://tools.ages.pucrs.br/agendamento-de-visitas-de-escola-ao-museu/Wiki/-/wikis/home} - Link para o repositório do Código Fonte do Projeto referente ao wiki (documentação)
+\par}
 
 \subsection{Banco de Dados Utilizado}
   A tecnologia selecionada para o banco de dados do projeto foi o PostgreSQL \cite{postgresql}, que utiliza o modelo relacional. Essa abordagem foi escolhida por facilitar a criação de vínculos e a manutenção da integridade entre as entidades do sistema. O esquema lógico relacional e o modelo conceitual, elaborados pela equipe, estão representados nas Figuras 2 e 3, respectivamente.
@@ -64,7 +66,9 @@ Além do diagrama de aplicações, nós também elaboramos um diagrama para a no
 
 \indent Durante as conversas, percebemos que o cliente não tinha requisitos detalhados para o design geral, mas ele nos solicitou explicitamente a inclusão de um calendário no formulário. A principal funcionalidade que definimos para esse calendário foi permitir que as escolas visualizassem os dias bloqueados no momento do agendamento.\\
 
+{\raggedright
 Link da Wiki: \url{https://tools.ages.pucrs.br/agendamento-de-visitas-de-escola-ao-museu/Wiki/-/wikis/mockups}
+\par}
 
 \subsection{Tecnologias Utilizadas}
     Para o desenvolvimento do backend, nós escolhemos a linguagem Node.js \cite{nodejs} em conjunto com o framework Nest.js \cite{nestjs}, principalmente por sua documentação ser bastante abrangente e didática. Adicionalmente, utilizamos o Prisma \cite{prisma}, um \ac{orm}, como ferramenta para simplificar nossa interação com o banco de dados.    No frontend, desenvolvemos a aplicação com a linguagem TypeScript \cite{typescript} e o framework React \cite{react} para a criação das interfaces e dos componentes visuais. A relação completa das tecnologias que empregamos no projeto está ilustrada na Figura 6.

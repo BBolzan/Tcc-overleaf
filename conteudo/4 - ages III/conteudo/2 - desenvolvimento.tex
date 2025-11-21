@@ -3,11 +3,13 @@
 \subsection{Repositório do Código Fonte do Projeto}
 \indent Para este projeto, nós dividimos o código-fonte em dois repositórios principais. O primeiro, de frontend, contém toda a parte visual da aplicação, o que inclui a homepage, a tela de administradores e as demais funcionalidades. O segundo repositório, de backend, abriga toda a lógica da aplicação. A documentação técnica que orientou nosso desenvolvimento também está versionada em sua própria wiki. Os links para acessar cada um desses repositórios são:
 
+{\raggedright
 \url{https://tools.ages.pucrs.br/saude-bucal-quilombola/back-end} - Link para o repositório do Código Fonte do Projeto referente ao backend
 
 \url{https://tools.ages.pucrs.br/saude-bucal-quilombola/front-end} - Link para o repositório do Código Fonte do Projeto referente ao frontend
 
 \url{https://tools.ages.pucrs.br/saude-bucal-quilombola/wiki/-/wikis/home} - Link para o repositório do Código Fonte do Projeto referente à wiki (documentação)
+\par}
 
 \subsection{Banco de Dados Utilizado}
 \indent Para o desenvolvimento do banco de dados do nosso projeto, nossa escolha foi o PostgreSQL \cite{postgresql}, que utilizamos para todo o armazenamento de informações. Nós avaliamos que, por ser um projeto com dados estruturados e sem a necessidade de armazenar imagens, não havia a necessidade de utilizarmos um banco de dados não relacional ou um Object Store. Na Figura 21, nós apresentamos o modelo conceitual que elaboramos para o PostgreSQL \cite{postgresql}.
@@ -68,7 +70,9 @@
 
 \indent Todo esse cuidado que tivemos teve como objetivo garantir um acesso rápido, intuitivo e visualmente agradável à aplicação. Os protótipos completos desenvolvidos para o projeto, incluindo a home page, o painel administrativo e a seção de questionários, podem ser visualizados no link do Figma \cite{figma} abaixo:
 
+{\raggedright
 Figma: \url{https://www.figma.com/design/QAnPucCHYVBTAoDJ2C2hcZ/Saúde-Bucal-Quilombola}
+\par}
 
 \subsection{Tecnologias Utilizadas}
 \indent Para o nosso backend, nós escolhemos a linguagem Node.js \cite{nodejs} com o framework NestJS \cite{nestjs}. Para facilitar o desenvolvimento e a interação com o banco de dados, utilizamos o Prisma \cite{prisma} como ORM e o PostgreSQL \cite{postgresql} como nosso sistema de banco de dados. Adotamos também o Swagger \cite{swagger} para documentar nossas rotas e o Docker \cite{docker} para a containerização da aplicação.
