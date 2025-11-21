@@ -20,7 +20,7 @@
 \subsection{Banco de Dados Utilizado}
 \indent Para o banco de dados principal do nosso projeto, nós escolhemos o PostgreSQL \cite{postgresql}, um sistema de gerenciamento de banco de dados relacional (\ac{sgbd}) de código aberto. A escolha se deu por sua robustez, confiabilidade e alto desempenho, além de sua compatibilidade com o padrão \ac{sql} e suporte a tipos de dados complexos (como \ac{uuid}, que utilizamos em nossas chaves primárias).
 
-\indent Para os testes de integração, nós utilizamos o H2, um banco de dados relacional leve e em memória. Essa abordagem nos permitiu validar a interação entre os diferentes componentes do software em um ambiente de teste rápido e isolado, sem a necessidade de um servidor de banco de dados físico.
+\indent Para os testes de integração, nós utilizamos o H2 \cite{h2database}, um banco de dados relacional leve e em memória. Essa abordagem nos permitiu validar a interação entre os diferentes componentes do software em um ambiente de teste rápido e isolado, sem a necessidade de um servidor de banco de dados físico.
 
 \indent Como framework de persistência, adotamos a especificação \ac{jpa} \cite{jpa}. O uso do \ac{jpa} nos permitiu abstrair a complexidade do \ac{sql} e manipular os dados diretamente como objetos Java \cite{java}, facilitando o desenvolvimento. Como implementação concreta do \ac{jpa}, utilizamos o Hibernate \cite{hibernate}. Na Figura 24, apresento o diagrama do banco de dados que elaboramos para o projeto.
 
