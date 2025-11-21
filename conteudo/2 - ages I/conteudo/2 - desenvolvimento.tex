@@ -50,7 +50,7 @@
 
 Além do diagrama de aplicações, nós também elaboramos um diagrama para a nossa estratégia de implantação (deploy), que está ilustrado na Figura 5. Nosso fluxo de desenvolvimento adota o uso de branches específicas para cada tarefa, que integramos posteriormente à branch de desenvolvimento (dev) por meio de um merge request.
 
-    Uma vez que o código é integrado à dev, ele passa por uma bateria de testes automatizados e por um processo de revisão de código (code review) que é realizado pelos nossos colegas mais experientes (AGES III e IV), para garantir a estabilidade e a qualidade. Assim que o código é aprovado, nós o mesclamos da dev para a branch principal (main). Essa ação aciona nosso pipeline de implantação, que executa os testes finais, gera uma imagem Docker \cite{docker} da aplicação e a publica no ambiente de produção na \ac{aws}.
+... o código é integrado à dev, ele passa por uma bateria de testes automatizados e por um processo de revisão de código (code review) que é realizado pelos nossos colegas mais experientes (AGES III e IV), para garantir a estabilidade e a qualidade. Assim que o código é aprovado, nós o mesclamos da dev para a branch principal (main). Essa ação aciona nosso pipeline de implantação, que executa os testes finais, gera uma imagem Docker \cite{docker} da aplicação e a publica no ambiente de produção na AWS \cite{aws}.
 
 \begin{figure}[H]
     \centering
