@@ -29,51 +29,51 @@
     \caption{Diagrama do banco de dados do projeto}
     \includegraphics[width=1\linewidth]{conteudo//5 - ages IV//conteudo//figures/banco-de-dados-esquema-conceitual-ages4}
     
-    Fonte: Wiki do Projeto
+    Fonte: \url{https://tools.ages.pucrs.br/gestao-de-planos-de-contingencia-em-desastres/hopeful-wiki/-/wikis/Banco%20de%20Dados}
     \label{fig:banco-de-dados-esquema-conceitual-ages4}
 \end{figure}
 
 \subsection{Arquitetura Utilizada}
-\indent Para o desenvolvimento do nosso projeto, nós adotamos o padrão arquitetural front-back, separando as responsabilidades do sistema em duas aplicações distintas: um backend desenvolvido com Spring Boot \cite{spring} e Java 21 \cite{java}, e um frontend com Next.js \cite{nextjs}.
-
-\indent \textbf{Arquitetura do Backend:} No backend, nós estruturamos o projeto com base no padrão \ac{mvc}. Essa abordagem nos permitiu separar as responsabilidades em três camadas principais, organizando o código entre modelos de dados, lógica de negócio e interfaces de comunicação.
-
-\begin{itemize}
-    \item \textbf{Models}: Representam a camada de dados da nossa aplicação. Neles, implementamos a lógica de negócio, o acesso aos dados e as regras de validação e manipulação.
-    \item \textbf{Views}: No nosso caso, a camada de View é representada pelo frontend, que consome os dados expostos pela nossa \ac{api}.
-    \item \textbf{Controller}: Atua como o intermediário entre as requisições do frontend e a lógica de negócio. Nossos controllers são responsáveis por receber as interações do usuário, processá-las e solicitar ou enviar dados aos Models.
-\end{itemize}
-
-\indent Para a organização do código, seguimos uma estrutura de pastas modular, onde cada módulo (como users, por exemplo) possui suas próprias pastas, facilitando a manutenção e a escalabilidade. Na Figura 25, apresento essa estrutura de pastas elaborada para o backend:
+\indent Para o desenvolvimento do nosso projeto, nós adotamos o padrão arquitetural front-back, separando as responsabilidades do sistema em duas aplicações distintas: um backend desenvolvido com Spring Boot \cite{spring} e Java 21 \cite{java}, e um frontend com Next.js \cite{nextjs}. Na Figura 25, apresento o diagrama da arquitetura completa do sistema:
 
 \begin{figure}[H]
     \centering
-    \caption{Estrutura de pastas do backend}
-    \includegraphics[width=1\linewidth]{conteudo//5 - ages IV//conteudo//figures/arquitetura-estrutura-pastas-backend-ages4.png}
+    \caption{Diagrama da arquitetura do sistema}
+    \includegraphics[width=1\linewidth]{conteudo//5 - ages IV//conteudo//figures/arquitetura-de-sistema-ages4.png}
     
-    Fonte: Wiki do Projeto
-    \label{fig:arquitetura-estrutura-pastas-backend-ages4}
+    Fonte: \url{https://tools.ages.pucrs.br/gestao-de-planos-de-contingencia-em-desastres/hopeful-wiki/-/wikis/arquitetura}
+    \label{fig:arquitetura-sistema-ages4}
 \end{figure}
 
-\indent \textbf{Arquitetura do Frontend:} No frontend, nós desenvolvemos a aplicação utilizando React \cite{react} com TypeScript \cite{typescript}, sobre o framework Next.js \cite{nextjs}. Nossa estilização foi feita inteiramente com Tailwind \ac{css} \cite{tailwind} para garantir um desenvolvimento ágil e responsivo. As principais bibliotecas que utilizamos foram:
+\indent \textbf{Arquitetura do Backend:} No backend, nós estruturamos o projeto em camadas, seguindo uma arquitetura em camadas que separa as responsabilidades de forma clara e organizada. O fluxo de dados segue a seguinte hierarquia:
 
 \begin{itemize}
-    \item \textbf{React}: Para a criação de interfaces reativas e componentizadas.
-    \item \textbf{TypeScript}: Para garantir a tipagem estática e a segurança no desenvolvimento.
-    \item \textbf{Tailwind CSS}: Para a estilização rápida e responsiva.
-    \item \textbf{Lucide}: Como nossa biblioteca de ícones, por ser moderna e personalizável.
+    \item \textbf{Controller}: Camada de entrada que recebe as requisições HTTP do frontend. Os controllers são responsáveis por validar os dados de entrada, delegar o processamento para a camada de serviço e retornar as respostas adequadas.
+    
+    \item \textbf{Service}: Contém toda a lógica de negócio da aplicação. Esta camada processa as regras de negócio, orquestra as operações entre diferentes entidades e coordena as transações.
+    
+    \item \textbf{Entity Mapper}: Responsável pela conversão entre \ac{dto} (Data Transfer Objects) e entidades do banco de dados. Essa camada garante que os dados trafeguem no formato adequado entre as diferentes camadas da aplicação.
+    
+    \item \textbf{Entities}: Representam os modelos de dados que são mapeados diretamente para as tabelas do banco de dados, utilizando anotações do \ac{jpa} \cite{jpa}.
+    
+    \item \textbf{Repository}: Camada de acesso aos dados que abstrai as operações de persistência. Utiliza o Spring Data JPA para realizar operações de \ac{crud} e consultas customizadas ao banco de dados.
+    
+    \item \textbf{DTO}: Objetos de transferência de dados que trafegam entre o backend e o frontend, garantindo que apenas os dados necessários sejam expostos pela \ac{api}.
+    
+    \item \textbf{Database}: Banco de dados PostgreSQL \cite{postgresql} que armazena de forma persistente todas as informações do sistema.
 \end{itemize}
 
-\indent Nossa estrutura de pastas foi organizada da seguinte forma para manter o projeto limpo e escalável. Na Figura 26, apresento essa estrutura de pastas elaborada para o frontend:
+\indent \textbf{Arquitetura do Frontend:} No frontend, nós desenvolvemos a aplicação utilizando React \cite{react} com TypeScript \cite{typescript}, sobre o framework Next.js \cite{nextjs}. Nossa arquitetura frontend segue uma estrutura componentizada e modular:
 
-\begin{figure}[H]
-    \centering
-    \caption{Estrutura de pastas do frontend}
-    \includegraphics[width=1\linewidth]{conteudo//5 - ages IV//conteudo//figures/arquitetura-estrutura-pastas-frontend-ages4.png}
+\begin{itemize}
+    \item \textbf{View}: Representa as páginas da aplicação, responsáveis por renderizar a interface do usuário e gerenciar o estado global das telas.
     
-    Fonte: Wiki do Projeto
-    \label{fig:arquitetura-estrutura-pastas-frontend-ages4}
-\end{figure}
+    \item \textbf{Components}: Componentes React reutilizáveis que compõem as interfaces. Cada componente é responsável por uma parte específica da \ac{ui}, promovendo a reutilização de código.
+    
+    \item \textbf{Services}: Camada que gerencia toda a comunicação com o backend através de requisições HTTP. Os services abstraem as chamadas à \ac{api}, centralizando a lógica de comunicação.
+\end{itemize}
+
+\indent Nossa estilização foi feita inteiramente com Tailwind \ac{css} \cite{tailwind} para garantir um desenvolvimento ágil e responsivo, e utilizamos a biblioteca Lucide \cite{lucide} para os ícones, por ser moderna e personalizável. Essa arquitetura nos permitiu manter uma separação clara de responsabilidades, facilitando a manutenção, os testes e a escalabilidade do projeto.
 
 \subsection{Protótipos das Telas Desenvolvidas}
 \indent Para o desenvolvimento das telas deste projeto, nós seguimos cuidadosamente as diretrizes de design e a identidade visual já estabelecidas pelo cliente. A paleta de cores definida foi estritamente em preto e branco, e a fonte tipográfica solicitada foi a "Barlow". Além disso, nós integramos o header e o logotipo já existentes na landing page do cliente para garantir consistência entre as plataformas. O cliente também enfatizou a importância da padronização em toda a aplicação, como a uniformidade no tamanho dos inputs.
