@@ -1,0 +1,22 @@
+\subsection{Sprint 1}
+
+\indent A Sprint 1 começou para nós logo após a segunda reunião com o stakeholder, onde
+apresentamos os mockups do projeto. O feedback que recebemos sobre o design minimalista foi muito positivo. A única ressalva foi que a equipe responsável pelo formulário não havia prototipado a tela do seletor de datas (datepicker), uma pendência que ficou para a próxima apresentação.
+
+\indent Depois dessa reunião, nossa equipe de desenvolvimento foi dividida entre os times de frontend e backend. Foi nos dada a opção de escolher, e eu optei por integrar a equipe de backend, pois estava motivado a trabalhar com o framework Nest.js, cuja documentação eu já havia estudado na sprint anterior.
+
+\indent Com as tarefas organizadas no Trello, eu assumi a responsabilidade de desenvolver o \ac{crud} de representantes. Durante a fase de estudo para implementar essa tarefa, nossa equipe de backend identificou uma falha conceitual no modelo do banco de dados. Percebemos que a estrutura original, que vinculava os representantes a uma tabela "institution", nos impediria de alterar os dados dos representantes em futuras visitas, já que cada novo agendamento geraria um registro desassociado dos anteriores. O modelo de dados que continha essa falha é o que apresento na Figura 8.
+
+\begin{figure}[H]
+    \centering
+    \small
+    \caption{Antigo Banco de Dados}
+    \includegraphics[width=1\linewidth]{conteudo//2 - ages I//conteudo//figures/sprint-1-ages1.png}
+    Fonte: Figma do projeto
+    \label{fig:sprint-1-ages1}
+\end{figure}
+
+\indent Após discutirmos bastante em equipe, chegamos a uma solução que envolvia a
+reestruturação do banco de dados, conforme o modelo da Figura 2. A alteração que propusemos consistiu na remoção da tabela "institution" e na migração de seus atributos para a tabela "visit". Com essa mudança, nós resolvemos o problema que impedia a alteração de dados e eliminamos a redundância na estrutura do banco.
+
+\indent Durante a Sprint 1, além de ter participado ativamente da discussão sobre o banco de dados, eu me dediquei a estudar o framework Nest.js e o \ac{orm} Prisma para me capacitar e conseguir ajudar o time de backend. Naquele momento, como eu tinha menos experiência em comparação com a maioria dos membros da equipe, minha contribuição direta em código foi limitada. Por isso, meu foco foi observar o desenvolvimento, fazer perguntas e participar das discussões técnicas para aprender e colaborar da melhor forma possível.

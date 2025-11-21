@@ -1,0 +1,79 @@
+\section[Desenvolvimento do Projeto]{Desenvolvimento do Projeto}
+
+\subsection{Repositório do Código Fonte do Projeto}
+  O código-fonte do projeto está organizado em repositórios distintos. Três deles compõem a aplicação principal: o frontend do formulário de agendamento, o frontend do painel administrativo e o backend. Há também um repositório dedicado a DevOps, utilizado pela equipe para a configuração do ambiente de desenvolvimento local. A documentação do projeto pode ser encontrada na página da wiki. Os respectivos repositórios podem ser acessados nos seguintes links:
+
+\url{https://tools.ages.pucrs.br/agendamento-de-visitas-de-escola-ao-museu/frontend-formulario} - Link para o repositório do Código Fonte do Projeto referente ao formulário (frontend)
+
+\url{https://tools.ages.pucrs.br/agendamento-de-visitas-de-escola-ao-museu/frontend-administrativo} - Link para o repositório do Código Fonte do Projeto referente ao dashboard administrativo (frontend)
+
+\url{https://tools.ages.pucrs.br/agendamento-de-visitas-de-escola-ao-museu/backend} - Link para o repositório do Código Fonte do Projeto referente ao backend
+
+\url{https://tools.ages.pucrs.br/agendamento-de-visitas-de-escola-ao-museu/devops} - Link para o repositório do Código Fonte do Projeto referente ao devops
+
+\url{https://tools.ages.pucrs.br/agendamento-de-visitas-de-escola-ao-museu/Wiki/-/wikis/home} - Link para o repositório do Código Fonte do Projeto referente ao wiki (documentação)
+
+\subsection{Banco de Dados Utilizado}
+  A tecnologia selecionada para o banco de dados do projeto foi o PostgreSQL, que utiliza o modelo relacional. Essa abordagem foi escolhida por facilitar a criação de vínculos e a manutenção da integridade entre as entidades do sistema. O esquema lógico relacional e o modelo conceitual, elaborados pela equipe, estão representados nas Figuras 2 e 3, respectivamente.
+
+\begin{figure}[H]
+    \centering
+    \small
+    \caption{Esquema Lógico do banco de dados}
+    \includegraphics[width=1\linewidth]{conteudo//2 - ages I//conteudo//figures/banco-de-dados-esquema-logico-ages1.png}
+    Fonte: Wiki do projeto
+    \label{fig:banco-de-dados-esquema-logico-ages1}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \small
+    \caption{Esquema Conceitual do banco de dados}
+    \includegraphics[width=1\linewidth]{conteudo//2 - ages I//conteudo//figures/banco-de-dados-esquema-conceitual-ages1.png}
+    Fonte: Wiki do projeto
+    \label{fig:banco-de-dados-esquema-logico-ages1}
+\end{figure}
+
+\subsection{Arquitetura Utilizada}
+  A arquitetura geral do projeto foi estruturada com aplicações de frontend que se comunicam com um backend centralizado. O diagrama que ilustra a comunicação entre os diferentes serviços do sistema é apresentado na Figura 4.
+
+\begin{figure}[H]
+    \centering
+    \small
+    \caption{Diagrama de arquitetura}
+    \includegraphics[width=1\linewidth]{conteudo//2 - ages I//conteudo//figures/arquitetura-diagrama-da-arquitetura-ages1.png}
+    Fonte: Wiki do projeto
+    \label{fig:arquitetura-diagrama-da-arquitetura-ages1}
+\end{figure}
+
+Além do diagrama de aplicações, nós também elaboramos um diagrama para a nossa estratégia de implantação (deploy), que está ilustrado na Figura 5. Nosso fluxo de desenvolvimento adota o uso de branches específicas para cada tarefa, que integramos posteriormente à branch de desenvolvimento (dev) por meio de um merge request.
+
+    Uma vez que o código é integrado à dev, ele passa por uma bateria de testes automatizados e por um processo de revisão de código (code review) que é realizado pelos nossos colegas mais experientes (AGES III e IV), para garantir a estabilidade e a qualidade. Assim que o código é aprovado, nós o mesclamos da dev para a branch principal (main). Essa ação aciona nosso pipeline de implantação, que executa os testes finais, gera uma imagem Docker da aplicação e a publica no ambiente de produção na \ac{aws}.
+
+\begin{figure}[H]
+    \centering
+    \small
+    \caption{Diagrama de deploy}
+    \includegraphics[width=1\linewidth]{conteudo//2 - ages I//conteudo//figures/arquitetura-diagrama-de-deploy-ages1.png}
+    Fonte: Wiki do projeto
+    \label{fig:arquitetura-diagrama-de-deploy-ages1}
+\end{figure}
+
+\subsection{Protótipos das Telas Desenvolvidas}
+\indent Nós desenvolvemos os protótipos de tela da aplicação web — tanto para o formulário deagendamento quanto para o dashboard administrativo — utilizando a ferramenta Figma. O objetivo com esses mockups foi apresentar ao cliente uma prévia visual das interfaces e, ao mesmo tempo, fornecer a nós, desenvolvedores, uma base para o trabalho de implementação, seguindo a metodologia ágil do projeto AGES.
+
+\indent Durante as conversas, percebemos que o cliente não tinha requisitos detalhados para o design geral, mas ele nos solicitou explicitamente a inclusão de um calendário no formulário. A principal funcionalidade que definimos para esse calendário foi permitir que as escolas visualizassem os dias bloqueados no momento do agendamento.\\
+
+Link da Wiki: \url{https://tools.ages.pucrs.br/agendamento-de-visitas-de-escola-ao-museu/Wiki/-/wikis/mockups}
+
+\subsection{Tecnologias Utilizadas}
+    Para o desenvolvimento do backend, nós escolhemos a linguagem Node.js em conjunto com o framework Nest.js, principalmente por sua documentação ser bastante abrangente e didática. Adicionalmente, utilizamos o Prisma, um \ac{orm}, como ferramenta para simplificar nossa interação com o banco de dados.    No frontend, desenvolvemos a aplicação com a linguagem TypeScript e o framework React para a criação das interfaces e dos componentes visuais. A relação completa das tecnologias que empregamos no projeto está ilustrada na Figura 6.
+
+\begin{figure}[H]
+    \centering
+    \small
+    \caption{Lista de tecnologias}
+    \includegraphics[width=1\linewidth]{conteudo//2 - ages I//conteudo//figures/lista-de-tecnologias-ages1.png}
+    Fonte: Mapas de projeto do Fluxo AGES
+    \label{fig:arquitetura-diagrama-de-deploy-ages1}
+\end{figure}

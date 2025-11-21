@@ -1,0 +1,100 @@
+\section[Desenvolvimento do Projeto]{Desenvolvimento do Projeto}
+
+\subsection{Repositório do Código Fonte do Projeto}
+\indent Para este projeto, nós dividimos o código-fonte em dois repositórios principais. O primeiro, de frontend, contém toda a parte visual da aplicação, o que inclui a homepage, a tela de administradores e as demais funcionalidades. O segundo repositório, de backend, abriga toda a lógica da aplicação. A documentação técnica que orientou nosso desenvolvimento também está versionada em sua própria wiki. Os links para acessar cada um desses repositórios são:
+
+\url{https://tools.ages.pucrs.br/saude-bucal-quilombola/back-end} - Link para o repositório do Código Fonte do Projeto referente ao backend
+
+\url{https://tools.ages.pucrs.br/saude-bucal-quilombola/front-end} - Link para o repositório do Código Fonte do Projeto referente ao frontend
+
+\url{https://tools.ages.pucrs.br/saude-bucal-quilombola/wiki/-/wikis/home} - Link para o repositório do Código Fonte do Projeto referente à wiki (documentação)
+
+\subsection{Banco de Dados Utilizado}
+\indent Para o desenvolvimento do banco de dados do nosso projeto, nossa escolha foi o PostgreSQL \cite{postgresql}, que utilizamos para todo o armazenamento de informações. Nós avaliamos que, por ser um projeto com dados estruturados e sem a necessidade de armazenar imagens, não havia a necessidade de utilizarmos um banco de dados não relacional ou um Object Store. Na Figura 21, nós apresentamos o modelo conceitual que elaboramos para o PostgreSQL \cite{postgresql}.
+
+\begin{figure}[H]
+    \centering
+    \caption{Esquema conceitual do banco de dados PostgreSQL}
+    \includegraphics[width=1\linewidth]{conteudo//4 - ages III//conteudo//figures/banco-de-dados-esquema-conceitual-ages3.png}
+    
+    Fonte: Wiki do Projeto
+    \label{fig:banco-de-dados-esquema-conceitual-ages3}
+\end{figure}
+
+\subsection{Arquitetura Utilizada}
+\indent Para este projeto, nós o estruturamos seguindo arquiteturas modernas tanto para o backend quanto para o frontend, com o objetivo de priorizar a modularidade, a facilidade de manutenção e a escalabilidade.
+
+\indent \textbf{Backend (NestJS + Prisma):} No backend, nós utilizamos a arquitetura em camadas padrão do NestJS \cite{nestjs}, organizando o código da seguinte forma:
+
+\begin{itemize}
+    \item \textbf{Controllers}: Responsáveis por receber as requisições HTTP, validar os dados de entrada com DTOs e encaminhar o processamento para as camadas internas. Com eles, definimos os endpoints da \ac{api} e gerenciamos o fluxo inicial das requisições.
+    \item \textbf{Services}: Camada onde concentramos a lógica de negócio da aplicação, processando os dados recebidos dos Controllers. Eles atuam como intermediários, abstraindo as operações com o banco de dados.
+    \item \textbf{Modules}: Usamos os módulos para encapsular componentes relacionados (como Controllers e Services), o que nos proporcionou uma organização de código mais modular e facilitou a manutenção.
+    \item \textbf{Prisma} \cite{prisma}: Adotamos o Prisma como nosso \ac{orm} para simplificar a interação com o banco de dados. Ele foi fundamental para gerar um cliente TypeScript \cite{typescript} type-safe a partir do nosso schema, facilitando migrações, relacionamentos e operações \ac{crud} sem a necessidade de escrever \ac{sql} manualmente.
+\end{itemize}
+
+\indent \textbf{Frontend (React + Vite + Tailwind CSS):} No frontend, nossa organização de pastas e arquivos seguiu a seguinte estrutura:
+
+\begin{itemize}
+    \item \textbf{Components}: Onde dividimos os componentes em três categorias: common (elementos reutilizáveis como botões e inputs), layout (estruturas como Header e Footer) e features (componentes para funcionalidades específicas).
+    \item \textbf{Pages}: Representam as diferentes telas da aplicação, que construímos a partir da composição de componentes menores.
+    \item \textbf{Routes}: Camada que usamos para gerenciar a navegação, o mapeamento de URLs e o controle de autenticação.
+    \item \textbf{Services}: Onde encapsulamos a lógica de comunicação com a nossa \ac{api} e outros serviços de terceiros.
+    \item \textbf{Hooks}: Utilizamos hooks para abstrair e reutilizar lógicas complexas de estado, mantendo nossos componentes mais limpos.
+    \item \textbf{Store}: Responsável pelo gerenciamento de estado global da aplicação.
+    \item \textbf{Styles}: Onde definimos os estilos globais e temas com o Tailwind \ac{css} \cite{tailwind}.
+    \item \textbf{Types}: Usamos esta pasta para armazenar nossas definições de tipos e interfaces TypeScript \cite{typescript}, garantindo a tipagem estática em toda a aplicação.
+\end{itemize}
+
+\indent \textbf{Diagrama de Deploy:} Na Figura 22, nós apresentamos o diagrama que elaboramos para detalhar a arquitetura em alto nível e o processo de deploy da infraestrutura do nosso projeto.
+
+\begin{figure}[H]
+    \centering
+    \caption{Diagrama de deploy da infraestrutura do projeto}
+    \includegraphics[width=1\linewidth]{conteudo//4 - ages III//conteudo//figures/arquitetura-diagrama-de-deploy-ages3.png}
+    
+    Fonte: Wiki do Projeto
+    \label{fig:arquitetura-diagrama-de-deploy-ages3}
+\end{figure}
+
+\indent Nesta arquitetura, nós hospedamos a aplicação em uma instância EC2 da AWS \cite{aws}. Nós configuramos o GitLab \cite{gitlab} Runner para que, a cada nova contribuição no repositório do GitLab (como um commit ou merge), ele capture o código e inicie o processo de build e deploy utilizando containers Docker \cite{docker}. Nós dividimos a aplicação em três partes principais: banco de dados, backend e frontend, e executamos cada uma delas em seu próprio container para garantir isolamento e maior controle.
+
+\indent Para o banco de dados, utilizamos PostgreSQL \cite{postgresql}; para o backend, construímos com NestJS \cite{nestjs} e Prisma \cite{prisma}; e para o frontend, desenvolvemos com React \cite{react}, TypeScript \cite{typescript} e TailwindCSS \cite{tailwind}. Todo esse fluxo foi automatizado por nós através de um pipeline de \ac{cicd} no GitLab \cite{gitlab}, o que nos ajudou a otimizar o tempo de entrega e a reduzir erros manuais.
+
+\indent Após o deploy, a aplicação pode ser acessada por dispositivos desktop e mobile. Além disso, nós integramos o sistema a um serviço de envio de e-mails para notificar os usuários ou a equipe quando necessário. Nós projetamos cada módulo da aplicação para ter conexões independentes entre si. Essa escolha nos permitiu que alterações em um serviço não afetassem diretamente os demais, promovendo a escalabilidade e a flexibilidade que buscávamos para o desenvolvimento contínuo do projeto.
+
+\subsection{Protótipos das Telas Desenvolvidas}
+\indent Para o desenvolvimento das telas, nós seguimos cuidadosamente um guia de estilo que criamos especialmente para este projeto. Nesse guia, definimos as diretrizes visuais, incluindo uma paleta de cores vibrantes — que escolhemos para captar a atenção dos usuários —, além da tipografia, dos ícones e das variações do logotipo. Ter esse material como referência foi fundamental, pois permitiu que nossa equipe focasse no desenvolvimento das interfaces de forma eficiente, sem a necessidade de nos preocuparmos com decisões pontuais de design ao longo do processo.
+
+\indent Todo esse cuidado que tivemos teve como objetivo garantir um acesso rápido, intuitivo e visualmente agradável à aplicação. Os protótipos completos desenvolvidos para o projeto, incluindo a home page, o painel administrativo e a seção de questionários, podem ser visualizados no link do Figma \cite{figma} abaixo:
+
+Figma: \url{https://www.figma.com/design/QAnPucCHYVBTAoDJ2C2hcZ/Saúde-Bucal-Quilombola}
+
+\subsection{Tecnologias Utilizadas}
+\indent Para o nosso backend, nós escolhemos a linguagem Node.js com o framework NestJS. Para facilitar o desenvolvimento e a interação com o banco de dados, utilizamos o Prisma como ORM e o PostgreSQL como nosso sistema de banco de dados. Adotamos também o Swagger para documentar nossas rotas e o Docker para a containerização da aplicação.
+
+\indent No frontend, nós desenvolvemos a aplicação com a linguagem TypeScript, utilizando o framework React em conjunto com o Vite como nossa ferramenta de build.
+
+\indent A seguir, apresentamos uma breve descrição de cada uma das principais tecnologias que utilizamos neste projeto:
+
+\begin{itemize}
+    \item \textbf{Prisma} \cite{prisma}: Um \ac{orm} que usamos para simplificar nossa interação com o banco de dados.
+    
+    \item \textbf{TypeScript} \cite{typescript}: Linguagem que escolhemos por ser uma extensão altamente tipada do JavaScript \cite{javascript}, o que facilitou a escalabilidade do projeto.
+    
+    \item \textbf{NestJS} \cite{nestjs}: Utilizamos este framework para construir nossa aplicação server-side de forma eficiente e escalável em Node.js \cite{nodejs}.
+    
+    \item \textbf{Node.js} \cite{nodejs}: Foi a runtime que escolhemos para executar nosso código JavaScript no lado do servidor.
+    
+    \item \textbf{Tailwind CSS} \cite{tailwind}: Estrutura de design que adotamos para estilizar nossa aplicação web de forma ágil com classes \ac{css} utilitárias.
+    
+    \item \textbf{React.js} \cite{react}: O framework que utilizamos para desenvolver as interfaces de frontend, criando componentes interativos e dinâmicos.
+    
+    \item \textbf{Vite} \cite{vite}: Foi nossa escolha como ferramenta de build por nos fornecer uma experiência de desenvolvimento mais rápida para um projeto web moderno.
+    
+    \item \textbf{Docker} \cite{docker}: Utilizamos esta plataforma para entregar nosso software em containers, o que nos garantiu consistência entre os ambientes de desenvolvimento, teste e produção.
+    
+    \item \textbf{PostgreSQL} \cite{postgresql}: Nosso sistema gerenciador de banco de dados objeto-relacional, escolhido por seus recursos robustos e confiabilidade.
+    
+    \item \textbf{Swagger} \cite{swagger}: Ferramenta que usamos para nos auxiliar na documentação, teste e visualização da nossa \ac{api} \ac{restful}.
+\end{itemize}

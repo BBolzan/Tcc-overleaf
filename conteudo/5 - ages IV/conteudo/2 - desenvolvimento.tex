@@ -1,0 +1,112 @@
+\section[Desenvolvimento do Projeto]{Desenvolvimento do Projeto}
+
+\subsection{Repositório do Código Fonte do Projeto}
+\indent Para este projeto, nós estruturamos o código-fonte em dois repositórios principais: um para o frontend e outro para o backend. Optamos por uma abordagem de web responsivo para o frontend, garantindo que a aplicação seja totalmente funcional em dispositivos móveis sem a necessidade de um repositório ou aplicativo nativo separado. Durante o desenvolvimento, enfrentamos um problema crítico de rollback no GitLab \cite{gitlab} da \ac{pucrs}, o que nos levou a tomar a decisão técnica de migrar o projeto para o GitHub \cite{github}, a fim de garantir maior estabilidade e controle de versionamento. Por essa razão, mantemos ambos os conjuntos de repositórios. A documentação técnica que orientou nosso desenvolvimento também foi duplicada em ambas as plataformas. Os links para acessar cada um desses repositórios são:
+
+\url{https://tools.ages.pucrs.br/gestao-de-planos-de-contingencia-em-desastres/hopeful-backend} - Link para o repositório do Código Fonte do Projeto referente ao backend (GitLab)
+
+\url{https://tools.ages.pucrs.br/gestao-de-planos-de-contingencia-em-desastres/hopeful-frontend} - Link para o repositório do Código Fonte do Projeto referente ao frontend (GitLab)
+
+\url{https://tools.ages.pucrs.br/gestao-de-planos-de-contingencia-em-desastres/hopeful-wiki/-/wikis/home} - Link para o repositório do Código Fonte do Projeto referente à wiki (GitLab)
+
+\url{https://github.com/Hopeful-ages/backend} - Link para o repositório do Código Fonte do Projeto referente ao backend (GitHub)
+
+\url{https://github.com/Hopeful-ages/frontend} - Link para o repositório do Código Fonte do Projeto referente ao frontend (GitHub)
+
+\url{https://github.com/Hopeful-ages/wiki/wiki} - Link para o repositório do Código Fonte do Projeto referente à wiki (GitHub)
+
+\subsection{Banco de Dados Utilizado}
+\indent Para o banco de dados principal do nosso projeto, nós escolhemos o PostgreSQL \cite{postgresql}, um sistema de gerenciamento de banco de dados relacional (\ac{sgbd}) de código aberto. A escolha se deu por sua robustez, confiabilidade e alto desempenho, além de sua compatibilidade com o padrão \ac{sql} e suporte a tipos de dados complexos (como \ac{uuid}, que utilizamos em nossas chaves primárias).
+
+\indent Para os testes de integração, nós utilizamos o H2, um banco de dados relacional leve e em memória. Essa abordagem nos permitiu validar a interação entre os diferentes componentes do software em um ambiente de teste rápido e isolado, sem a necessidade de um servidor de banco de dados físico.
+
+\indent Como framework de persistência, adotamos a especificação \ac{jpa} \cite{jpa}. O uso do \ac{jpa} nos permitiu abstrair a complexidade do \ac{sql} e manipular os dados diretamente como objetos Java \cite{java}, facilitando o desenvolvimento. Como implementação concreta do \ac{jpa}, utilizamos o Hibernate \cite{hibernate}. Na Figura 24, apresento o diagrama do banco de dados que elaboramos para o projeto.
+
+\begin{figure}[H]
+    \centering
+    \caption{Diagrama do banco de dados do projeto}
+    \includegraphics[width=1\linewidth]{conteudo//5 - ages IV//conteudo//figures/banco-de-dados-esquema-conceitual-ages4}
+    
+    Fonte: Wiki do Projeto
+    \label{fig:banco-de-dados-esquema-conceitual-ages4}
+\end{figure}
+
+\subsection{Arquitetura Utilizada}
+\indent Para o desenvolvimento do nosso projeto, nós adotamos o padrão arquitetural front-back, separando as responsabilidades do sistema em duas aplicações distintas: um backend desenvolvido com Spring Boot \cite{spring} e Java 21 \cite{java}, e um frontend com Next.js \cite{nextjs}.
+
+\indent \textbf{Arquitetura do Backend:} No backend, nós estruturamos o projeto com base no padrão \ac{mvc}. Essa abordagem nos permitiu separar as responsabilidades em três camadas principais, organizando o código entre modelos de dados, lógica de negócio e interfaces de comunicação.
+
+\begin{itemize}
+    \item \textbf{Models}: Representam a camada de dados da nossa aplicação. Neles, implementamos a lógica de negócio, o acesso aos dados e as regras de validação e manipulação.
+    \item \textbf{Views}: No nosso caso, a camada de View é representada pelo frontend, que consome os dados expostos pela nossa \ac{api}.
+    \item \textbf{Controller}: Atua como o intermediário entre as requisições do frontend e a lógica de negócio. Nossos controllers são responsáveis por receber as interações do usuário, processá-las e solicitar ou enviar dados aos Models.
+\end{itemize}
+
+\indent Para a organização do código, seguimos uma estrutura de pastas modular, onde cada módulo (como users, por exemplo) possui suas próprias pastas, facilitando a manutenção e a escalabilidade. Na Figura 25, apresento essa estrutura de pastas elaborada para o backend:
+
+\begin{figure}[H]
+    \centering
+    \caption{Estrutura de pastas do backend}
+    \includegraphics[width=1\linewidth]{conteudo//5 - ages IV//conteudo//figures/arquitetura-estrutura-pastas-backend-ages4.png}
+    
+    Fonte: Wiki do Projeto
+    \label{fig:arquitetura-estrutura-pastas-backend-ages4}
+\end{figure}
+
+\indent \textbf{Arquitetura do Frontend:} No frontend, nós desenvolvemos a aplicação utilizando React \cite{react} com TypeScript \cite{typescript}, sobre o framework Next.js \cite{nextjs}. Nossa estilização foi feita inteiramente com Tailwind \ac{css} \cite{tailwind} para garantir um desenvolvimento ágil e responsivo. As principais bibliotecas que utilizamos foram:
+
+\begin{itemize}
+    \item \textbf{React}: Para a criação de interfaces reativas e componentizadas.
+    \item \textbf{TypeScript}: Para garantir a tipagem estática e a segurança no desenvolvimento.
+    \item \textbf{Tailwind CSS}: Para a estilização rápida e responsiva.
+    \item \textbf{Lucide}: Como nossa biblioteca de ícones, por ser moderna e personalizável.
+\end{itemize}
+
+\indent Nossa estrutura de pastas foi organizada da seguinte forma para manter o projeto limpo e escalável. Na Figura 26, apresento essa estrutura de pastas elaborada para o frontend:
+
+\begin{figure}[H]
+    \centering
+    \caption{Estrutura de pastas do frontend}
+    \includegraphics[width=1\linewidth]{conteudo//5 - ages IV//conteudo//figures/arquitetura-estrutura-pastas-frontend-ages4.png}
+    
+    Fonte: Wiki do Projeto
+    \label{fig:arquitetura-estrutura-pastas-frontend-ages4}
+\end{figure}
+
+\subsection{Protótipos das Telas Desenvolvidas}
+\indent Para o desenvolvimento das telas deste projeto, nós seguimos cuidadosamente as diretrizes de design e a identidade visual já estabelecidas pelo cliente. A paleta de cores definida foi estritamente em preto e branco, e a fonte tipográfica solicitada foi a "Barlow". Além disso, nós integramos o header e o logotipo já existentes na landing page do cliente para garantir consistência entre as plataformas. O cliente também enfatizou a importância da padronização em toda a aplicação, como a uniformidade no tamanho dos inputs.
+
+\indent Um requisito central do design foi que a nossa tela principal, a de cadastro de cenários, tivesse a aparência de uma "ficha", espelhando o formato do \ac{pdf} que o sistema gera ao final. Embora nossa equipe tivesse outras visões de design, nós nos alinhamos à preferência do cliente, compreendendo que na metodologia \ac{ages} o objetivo é atender às suas necessidades.
+
+\indent Os protótipos completos desenvolvidos para o projeto, incluindo a tela de cadastro de cenário na visão do administrador, a tela de cadastro na visão do usuário de serviço e todas as demais interfaces da aplicação, podem ser visualizados no link do Figma \cite{figma} abaixo:
+
+Figma: \url{www.figma.com/design/CaQZSC2AycNI8dkSKO3XnB/Gestão-de-Desastres}
+
+\subsection{Tecnologias Utilizadas}
+\indent Para o desenvolvimento do nosso projeto, nós utilizamos um conjunto de tecnologias modernas e robustas. A seguir, detalho as principais ferramentas que compuseram nossa stack de desenvolvimento:
+
+\begin{itemize}
+    \item \textbf{Java 21} \cite{java}: Linguagem de programação principal que utilizamos para toda a lógica de negócio no lado do servidor.
+    
+    \item \textbf{Spring Boot} \cite{spring}: Framework que escolhemos para construir nossa aplicação de forma ágil e escalável.
+    
+    \item \textbf{PostgreSQL} \cite{postgresql}: Nosso sistema de gerenciamento de banco de dados relacional principal, escolhido por sua robustez e confiabilidade.
+    
+    \item \textbf{JPA (Hibernate)} \cite{jpa} \cite{hibernate}: Especificação e implementação que adotamos para o mapeamento objeto-relacional (\ac{orm}), facilitando a persistência de dados.
+    
+    \item \textbf{H2 Database}: Banco de dados em memória que usamos para a execução de testes de integração, garantindo um ambiente rápido e isolado.
+    
+    \item \textbf{Swagger} \cite{swagger}: Ferramenta que utilizamos para documentar e testar nossa \ac{api} \ac{restful}, facilitando a comunicação entre o backend e o frontend.
+    
+    \item \textbf{Docker} \cite{docker}: Plataforma que adotamos para containerizar nossa aplicação, garantindo a consistência entre os ambientes de desenvolvimento, teste e produção.
+    
+    \item \textbf{Next.js} \cite{nextjs}: Framework React que utilizamos para a construção da nossa aplicação web, aproveitando seus recursos de renderização e roteamento.
+    
+    \item \textbf{React} \cite{react}: Biblioteca principal para a criação de nossas interfaces de usuário reativas e componentizadas.
+    
+    \item \textbf{TypeScript} \cite{typescript}: Linguagem que adotamos em todo o frontend para adicionar tipagem estática, aumentando a segurança e a manutenibilidade do código.
+    
+    \item \textbf{Tailwind CSS} \cite{tailwind}: Nossa escolha para a estilização, permitindo a criação de interfaces modernas e responsivas de forma ágil através de classes utilitárias.
+    
+    \item \textbf{Lucide}: Biblioteca de ícones que utilizamos para garantir uma iconografia moderna e consistente na aplicação.
+\end{itemize}

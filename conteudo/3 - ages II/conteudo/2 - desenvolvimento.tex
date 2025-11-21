@@ -1,0 +1,126 @@
+\section[Desenvolvimento do Projeto]{Desenvolvimento do Projeto}
+
+\subsection{Repositório do Código Fonte do Projeto}
+Para este projeto, nós dividimos o código-fonte em três repositórios principais. O primeiro é o do frontend web, que engloba todo o gerenciamento da planning e as configurações do sistema. O segundo é o do frontend mobile, por onde os usuários participam da votação no jogo. Por fim, o terceiro repositório contém o backend da aplicação.
+A documentação completa, que orientou nosso desenvolvimento, também está versionada em sua própria wiki. Os links para acessar cada um desses repositórios são os seguintes:
+
+\url{https://tools.ages.pucrs.br/planline/web} - Link para o repositório do Código Fonte do Projeto referente ao frontend (web)
+
+\url{https://tools.ages.pucrs.br/planline/mobile} - Link para o repositório do Código Fonte do Projeto referente ao frontend (mobile)
+
+\url{https://tools.ages.pucrs.br/planline/backend} - Link para o repositório do Código Fonte do Projeto referente ao backend
+
+\url{https://tools.ages.pucrs.br/planline/wiki/-/wikis/home} - Link para o repositório do Código Fonte do Projeto referente ao wiki (documentação)
+
+\subsection{Banco de Dados Utilizado}
+\indent Para o desenvolvimento dos bancos de dados do nosso projeto, nós escolhemos uma abordagem híbrida, utilizando duas tecnologias: PostgreSQL \cite{postgresql} e Firebase \cite{firebase}. O PostgreSQL foi usado como nosso banco de dados principal, responsável pelo armazenamento de todas as informações estruturais do projeto. 
+
+\indent Já o Firebase foi a nossa escolha para a funcionalidade de votação em tempo real (realtime). Nós o utilizamos para gerenciar a simultaneidade dos votos e garantir que as respostas do servidor fossem sincronizadas ao vivo para todos os participantes. Enquanto o PostgreSQL \cite{postgresql} persiste todos os dados históricos e estruturais, o Firebase \cite{firebase} atua como uma camada de sincronização em tempo real para as sessões de Planning Poker em andamento. Na Figura 10, apresentamos o modelo conceitual que elaboramos para o PostgreSQL.
+
+\begin{figure}[H]
+    \centering
+    \small
+    \caption{Modelo Conceitual do Banco de Dados PostgreSQL}
+    \includegraphics[width=1\linewidth]{conteudo//3 - ages II//conteudo//figures/banco-de-dados-esquema-conceitual-ages2.png}
+    Fonte: Wiki do Projeto
+    \label{fig:banco-de-dados-esquema-conceitual-ages2}
+\end{figure}
+
+\indent \textbf{Firebase Realtime Database:} O Firebase \cite{firebase} foi escolhido especificamente para gerenciar as sessões ativas do sistema. O Firebase Realtime Database é utilizado para armazenar e sincronizar dados em tempo real entre todos os clientes conectados, gerenciando as informações das sessões ativas, incluindo votos em andamento, usuários conectados e o estado atual da votação. A estrutura de dados no Firebase segue um modelo de documentos aninhados em formato \ac{json}, organizando os dados hierarquicamente: (i) \textit{sessions} contém todas as sessões ativas identificadas por um ID único; (ii) \textit{game} armazena o estado da sessão (história atual, tarefa atual, sprint, squad, status de finalização); (iii) \textit{users} lista os usuários conectados na sessão com seus perfis e níveis; (iv) \textit{votes} registra os votos individuais e o voto final de cada tarefa.
+
+\indent A estrutura básica de uma sessão no Firebase pode ser representada conforme o exemplo abaixo:
+
+\begin{verbatim}
+{
+  "sessions": {
+    "5853": {
+      "game": {
+        "current_story": "5021687140",
+        "current_task": "5021695966",
+        "finished": true,
+        "squad_name": "Squad 2",
+        "sprint_name": "Sprint 04"
+      },
+      "users": {
+        "172de6de-a6e8-4735-8916-6b5b261e9671": {
+          "name": "Joao",
+          "level": "JUNIOR"
+        }
+      },
+      "votes": {
+        "5021695966": {
+          "final_vote": 5,
+          "votes": {
+            "172de6de-a6e8-4735-8916-6b5b261e9671": 2
+          }
+        }
+      }
+    }
+  }
+}
+\end{verbatim}
+
+\indent \textbf{Firebase Authentication:} Para o gerenciamento de identidade dos usuários, implementamos o Firebase Authentication com suporte a autenticação anônima. Essa abordagem permite que os participantes entrem nas sessões sem necessidade de criar contas permanentes, apenas escolhendo um identificador de perfil para a sessão atual.
+
+\indent \textbf{Fluxo de Integração:} A integração entre os dois bancos de dados funciona da seguinte forma: (i) no início da sessão, o backend cria uma nova sessão no Firebase com os dados importados do PostgreSQL (sprint, histórias, tarefas); (ii) durante a votação em tempo real, os usuários se conectam à sessão via Firebase Authentication e seus votos são sincronizados instantaneamente através do Realtime Database para todos os participantes; (iii) na finalização, quando a votação é concluída e o voto final é registrado, os dados são persistidos permanentemente no PostgreSQL e a sessão pode ser removida do Firebase.
+
+\indent \textbf{Segurança e Controle de Acesso:} As regras de segurança do Firebase foram configuradas para garantir a integridade dos dados e o controle adequado de permissões. O backend possui permissão exclusiva para criar e gerenciar sessões, o aplicativo móvel pode visualizar sessões e registrar votos individuais, e a aplicação web, além das permissões do móvel, pode definir o voto final consolidado. Essa arquitetura híbrida permite que aproveitemos as vantagens de ambas as tecnologias: a robustez e estrutura do PostgreSQL para dados persistentes, e a sincronização em tempo real do Firebase para as interações dinâmicas durante as sessões de Planning Poker.
+
+\subsection{Arquitetura Utilizada}
+\indent Para o backend, nós estruturamos o projeto com base nos princípios da Clean Architecture, utilizando uma arquitetura em camadas. Nossa organização de arquivos (ficheiros) ficou caracterizada da seguinte forma:
+
+\begin{itemize}
+    \item \textbf{Controllers}: Responsáveis por prover os serviços e conectar os diferentes módulos do sistema com a aplicação backend.
+    \item \textbf{Services}: Camada intermediária da aplicação, onde definimos a comunicação entre os Controllers e os Repositories, fazendo a conversão entre a lógica de sistema e a lógica de negócio.
+    \item \textbf{Repositories}: Camada onde definimos as lógicas diretamente relacionadas à troca de dados entre a aplicação backend e o banco de dados.
+    \item \textbf{Prisma (Models)}: Este arquivo define a camada de Models, detalhando o formato dos dados que transitam com o banco de dados. Nós o chamamos assim por fazer uso do Prisma \cite{prisma}, uma biblioteca de \ac{orm} que utilizamos para simplificar o gerenciamento e as consultas (queries) ao banco.
+\end{itemize}
+
+\indent \textbf{Diagrama de Deploy:} Na Figura 11, nós apresentamos o diagrama que elaboramos para mostrar a arquitetura em alto nível e o processo de deploy da infraestrutura do projeto.
+
+\begin{figure}[H]
+    \centering
+    \small
+    \caption{Diagrama de Deploy da Infraestrutura do Projeto}
+    \includegraphics[width=1\linewidth]{conteudo//3 - ages II//conteudo//figures/banco-de-dados-esquema-conceitual-ages2.png}
+    Fonte: Wiki do Projeto
+    \label{fig:banco-de-dados-esquema-conceitual-ages2}
+\end{figure}
+
+\indent Para a nossa infraestrutura, nós utilizamos duas instâncias da \ac{aws} \cite{aws}. Configuramos o Gitlab \cite{gitlab} Runner para que, a cada nova contribuição (como um commit ou merge), ele carregue os códigos dos repositórios do Frontend Web e do Backend e os armazene dentro de seus respectivos containers Docker \cite{docker}.
+
+\indent Já o nosso Frontend Mobile não necessita de um servidor, pois nós o desenvolvemos utilizando o framework EXPO GO \cite{expo}, que é carregado diretamente no smartphone de cada usuário quando o código é executado. Para o banco de dados em tempo real, utilizamos o Firebase \cite{firebase}, que é um serviço provisionado no Google Cloud.
+
+\indent Com essa arquitetura, os principais módulos do nosso sistema dispõem de conexões distintas entre si, uma estrutura que projetamos para permitir futuras alterações de forma flexível, conforme o andamento do projeto.
+
+\subsection{Protótipos das Telas Desenvolvidas}
+\indent Para o desenvolvimento das telas, nós seguimos rigorosamente o guia de estilo (style guide) que nos foi apresentado pela designer \ac{ui}/\ac{ux} da Triider e stakeholder do projeto, Letícia Reis. Esse guia detalhava todos os elementos visuais da empresa, como a paleta de cores, as fontes tipográficas, a iconografia e as variações do logotipo corporativo. Ter esse guia de estilo foi fundamental, pois nos permitiu focar totalmente no desenvolvimento das interfaces, sem a necessidade de nos preocuparmos com a criação de uma identidade visual do zero.
+
+\indent Nosso trabalho de prototipação foi todo realizado no Figma \cite{figma}, onde elaboramos os mockups das interfaces do sistema. O projeto completo pode ser acessado através do link: 
+
+\indent Figma: \url{https://www.figma.com/file/yna1TnDmaCIsMHzI4IPDoB/Planning-Poker-AGES}
+
+\subsection{Tecnologias Utilizadas}
+\indent Para o backend do nosso projeto, nós escolhemos a linguagem Node.js \cite{nodejs} com o framework Express.js \cite{express}. Para facilitar o desenvolvimento e a interação com o banco de dados, utilizamos o Prisma \cite{prisma} como \ac{orm}. Adotamos também o Swagger \cite{swagger} para documentar nossas rotas e padronizar o projeto.
+
+\indent No frontend, optamos por usar TypeScript \cite{typescript} em ambas as frentes. Para a aplicação web, utilizamos o framework React.js \cite{react}. Já para a aplicação mobile, escolhemos o React Native em conjunto com o Expo \cite{expo}, que nos auxiliou a agilizar o desenvolvimento e os testes.
+
+\indent A seguir, apresentamos uma breve descrição de cada uma das principais tecnologias que utilizamos neste projeto:
+
+\begin{itemize}
+    \item \textbf{Prisma} \cite{prisma}: É um \ac{orm} que usamos para simplificar nossa interação com o banco de dados, oferecendo suporte a migrações e consultas expressivas.
+    
+    \item \textbf{TypeScript} \cite{typescript}: Como uma extensão do JavaScript \cite{javascript}, essa linguagem altamente tipada foi nossa escolha para facilitar a escalabilidade do projeto e reduzir erros.
+    
+    \item \textbf{Express.js} \cite{express}: Utilizamos este framework para Node.js \cite{nodejs} por sua simplicidade e flexibilidade na criação de rotas e no gerenciamento de requisições e respostas do nosso backend.
+    
+    \item \textbf{Node.js} \cite{nodejs}: Foi a runtime que escolhemos para executar nosso código JavaScript no lado do servidor.
+    
+    \item \textbf{Expo} \cite{expo}: Essa ferramenta foi essencial em nosso desenvolvimento mobile com React Native, pois oferece componentes e \ac{api} pré-construídos que aceleraram nosso trabalho.
+    
+    \item \textbf{React Native}: Escolhemos este framework para desenvolver o aplicativo mobile, pois ele nos permitiu usar uma única base de código para iOS e Android, economizando tempo.
+    
+    \item \textbf{Tailwind CSS} \cite{tailwind}: Para a estilização da aplicação web, utilizamos o Tailwind \ac{css}, uma estrutura que nos permitiu criar interfaces modernas e responsivas de forma ágil.
+    
+    \item \textbf{React.js} \cite{react}: Este foi o framework que usamos para desenvolver as interfaces do nosso frontend web, criando componentes interativos e dinâmicos.
+\end{itemize}
