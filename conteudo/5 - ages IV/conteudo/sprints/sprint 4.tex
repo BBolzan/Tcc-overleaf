@@ -19,53 +19,24 @@
 
 \indent Como parte das responsabilidades de AGES IV, nós, o time de AGES IV, elaboramos os artefatos de gerenciamento de projeto para esta sprint. Esse processo demorou mais do que o esperado, pois só descobrimos nessa sprint final que teríamos que fazer esses entregáveis — em nenhuma das minhas AGES anteriores isso havia sido solicitado. Deixo aqui uma crítica construtiva para a disciplina: acredito que deveria ser padronizado os entregáveis de todos os projetos, pois me surpreendi ao descobrir essa exigência apenas no final. Apesar disso, conseguimos elaborar os documentos de forma colaborativa.
 
-\indent O primeiro artefato foi o Plano de Comunicação, apresentado na Tabela 2, que documenta todos os eventos de comunicação da equipe, incluindo as Daily meetings (realizadas às segundas e quartas às 17:30 e aos sábados às 14:00), a Sprint Review (ao final de cada sprint), o Sprint Planning (no início de cada sprint), a Sprint Retrospective (ao final de cada sprint) e a Apresentação Final (ao final do projeto). Cada evento tem seu responsável (AGES IV), envolvidos (AGES I, II, III e IV, além do Cliente nas apresentações), frequência e duração definidas.
+\indent O primeiro artefato foi o Plano de Comunicação, apresentado na Figura 26, que documenta todos os eventos de comunicação da equipe, incluindo as Daily meetings (realizadas às segundas e quartas às 17:30 e aos sábados às 14:00), a Sprint Review (ao final de cada sprint), o Sprint Planning (no início de cada sprint), a Sprint Retrospective (ao final de cada sprint) e a Apresentação Final (ao final do projeto). Cada evento tem seu responsável (AGES IV), envolvidos (AGES I, II, III e IV, além do Cliente nas apresentações), frequência e duração definidas.
 
 \begin{table}[H]
-\centering
-\caption{Plano de Comunicação}
-\begin{tabular}{|p{2cm}|p{4.5cm}|p{1.8cm}|p{1.8cm}|p{2cm}|p{1.5cm}|}
-\hline
-\textbf{Evento} & \textbf{Descrição} & \textbf{Responsável} & \textbf{Envolvidos} & \textbf{Frequência} & \textbf{Duração} \\
-\hline
-Daily & Encontro onde cada membro atualiza o time sobre o que fez desde a última Daily, se está com algum impedimento e o que fará a seguir. & AGES IV & AGES I, II, III e IV & Segundas e Quartas às 17:30 e Sábado às 14:00 & 15 minutos \\
-\hline
-Sprint Review & Apresentação das entregas realizadas e discussão acerca do escopo da próxima sprint. & AGES IV & AGES I, II, III, IV e Cliente & 1 vez no fim de cada Sprint & 1 hora \\
-\hline
-Sprint Planning & Encontro onde o time revisa o feedback do cliente e o backlog da sprint que se passou de forma a planejar o escopo da próxima sprint & AGES IV & AGES I, II, III e IV & 1 vez no começo de cada Sprint & 30 minutos \\
-\hline
-Sprint Retrospective & Momento dedicado à discussão entre a equipe acerca do que está sendo efetivo para o desenvolvimento da sprint e identificar problemas e melhorias a serem feitas. & AGES IV & AGES I, II, III e IV & 1 vez no fim de cada Sprint & 1 hora \\
-\hline
-Apresentação Final & Apresentação final da AGES, na qual o time deve apresentar o projeto realizado para todos outros membros da AGES. & AGES IV & AGES I, II, III e IV & 1 vez no fim do projeto & 10 minutos \\
-\hline
-\end{tabular}
-\label{tab:plano-comunicacao-ages4}
+    \centering
+    \caption{Plano de Comunicação}
+    \includegraphics[width=1\linewidth]{conteudo//5 - ages IV//conteudo//figures/plano-comunicação.png}
+    
+    Fonte: \url{https://tools.ages.pucrs.br/gestao-de-planos-de-contingencia-em-desastres/hopeful-wiki/-/wikis/gerência}
+    \label{fig:plano-comunicacao-ages4}
 \end{table}
 
-\indent O segundo artefato foi o Plano de Riscos, apresentado na Tabela 3, que identifica e documenta os principais riscos do projeto em sete categorias: Técnico (falhas em integrações ou \ac{api} externas mal documentadas), Cronograma (atrasos nas entregas e dependências entre times), Escopo (mudanças de requisitos pelo cliente), Infraestrutura (falhas de servidor ou banco de dados), Segurança (vazamento de dados), Qualidade (testes insuficientes e entregas com pouca cobertura de testes unitários e integrados) e Comunicação (falta de alinhamento e dificuldade de comunicação entre equipe e stakeholders). Para cada risco, foram definidos a probabilidade de ocorrência, o impacto no projeto, o nível de criticidade e as estratégias de mitigação ou controle, além dos planos de ação e contingência. Este artefato foi essencial para antecipar problemas e garantir que tivéssemos estratégias preparadas para lidar com possíveis contratempos durante o desenvolvimento.
+\indent O segundo artefato foi o Plano de Riscos, apresentado na Figura 27, que identifica e documenta os principais riscos do projeto em sete categorias: Técnico (falhas em integrações ou \ac{api} externas mal documentadas), Cronograma (atrasos nas entregas e dependências entre times), Escopo (mudanças de requisitos pelo cliente), Infraestrutura (falhas de servidor ou banco de dados), Segurança (vazamento de dados), Qualidade (testes insuficientes e entregas com pouca cobertura de testes unitários e integrados) e Comunicação (falta de alinhamento e dificuldade de comunicação entre equipe e stakeholders). Para cada risco, foram definidos a probabilidade de ocorrência, o impacto no projeto, o nível de criticidade e as estratégias de mitigação ou controle, além dos planos de ação e contingência. Este artefato foi essencial para antecipar problemas e garantir que tivéssemos estratégias preparadas para lidar com possíveis contratempos durante o desenvolvimento.
 
 \begin{table}[H]
-\centering
-\caption{Plano de Riscos}
-\scriptsize
-\begin{tabular}{|p{1.5cm}|p{1.8cm}|p{2.5cm}|p{1.2cm}|p{1.2cm}|p{1cm}|p{1.5cm}|p{2.8cm}|}
-\hline
-\textbf{Categoria} & \textbf{Risco} & \textbf{Descrição} & \textbf{Probabilidade} & \textbf{Impacto} & \textbf{Nível} & \textbf{Estratégia} & \textbf{Plano de Ação / Contingência} \\
-\hline
-Técnico & Falhas em integrações & \ac{api} externas instáveis ou mal documentadas. & Alta & Média & Alto & Mitigar & Definir contratos de \ac{api} e mockar dados localmente para testes. Criar camada de fallback no backend. \\
-\hline
-Cronograma & Atrasos nas entregas & Estimativas imprecisas e dependências entre times. & Alta & Alta & Alto & Controlar & Dividir tarefas grandes em entregas menores; manter acompanhamento semanal e replanejar se necessário. \\
-\hline
-Escopo & Mudanças de requisitos & Alterações de funcionalidades pelo cliente. & Alta & Média & Alto & Controlar & Validar novas demandas em conjunto com o stakeholder e incluir apenas em sprints futuras. \\
-\hline
-Infraestrutura & Falhas de servidor ou banco de dados & Instabilidade de hospedagem ou perda de dados. & Média & Alta & Alto & Mitigar & Realizar backups automáticos e aplicar logs de erro. \\
-\hline
-Segurança & Vazamento de dados & Falhas em criptografia. & Baixa & Alta & Alto & Eliminar & Aplicar criptografia para dados sensíveis, tokens JWT, e limitar permissões por perfil. \\
-\hline
-Qualidade & Testes insuficientes & Entregas com pouca cobertura de testes unitários e integrados. & Média & Média & Médio & Melhorar & Adotar pipelines de CI com execução automática de testes e obrigatoriedade de cobertura mínima. \\
-\hline
-Comunicação & Falta de alinhamento & Dificuldade de comunicação entre equipe e stakeholders. & Média & Média & Médio & Mitigar & Manter reuniões curtas semanais, atualizar tarefas no Clickup e registrar decisões na Wiki. \\
-\hline
-\end{tabular}
-\label{tab:plano-riscos-ages4}
+    \centering
+    \caption{Plano de Riscos}
+    \includegraphics[width=1\linewidth]{conteudo//5 - ages IV//conteudo//figures/plano-risco.png}
+    
+    Fonte: \url{https://tools.ages.pucrs.br/gestao-de-planos-de-contingencia-em-desastres/hopeful-wiki/-/wikis/gerência}
+    \label{fig:plano-riscos-ages4}
 \end{table}
