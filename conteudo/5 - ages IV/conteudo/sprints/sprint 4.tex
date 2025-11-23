@@ -1,3 +1,71 @@
 \subsection{Sprint 4}
+\indent Para essa última sprint, restavam poucas atividades para finalizarmos o projeto. Tínhamos ficado comprometidos com quatro entregas principais: a US de resetar a senha do usuário, que enviaria um email com o link para ele realizar a redefinição; a feature de criar os serviços por parte do administrador, que havia sido combinada com o Abner; fazer os testes no backend para garantir a qualidade do código; e passar o projeto inteiro para a \ac{vps}, criando uma conta na Kinghost \cite{kinghost} com os dados e o cartão do Abner, pois nosso objetivo era entregar uma aplicação funcionando no ambiente dele, não um \ac{mvp} de código aberto que exigisse que o cliente contratasse alguém para subir o projeto. Além disso, também ficamos de fazer um ajuste no \ac{pdf}.
 
-No mínimo uma página contendo tudo que o aluno fez na Sprint 4.
+\indent Porém, como entregamos a sprint anterior uma semana antes do planejado, ficamos com muito tempo apenas para essas tasks, e gostaríamos de aperfeiçoar o projeto tanto para o Abner quanto para a apresentação final. Então, após realizar a retrospectiva da Sprint 3, que teve o tema de montanha — onde o que foi bom na sprint era "Topo da Montanha", o que foi ruim eram "Deslizamentos", os alunos destaque eram os "Alpinistas" e os que precisavam de um empurrãozinho eram os "Opss..." —, o time levantou um ponto muito bom: poderíamos adicionar mais coisas na sprint para melhorar a entrega.
+
+\indent Após discutirmos o que poderíamos fazer, entramos no seguinte consenso: já que tínhamos duas telas que eram web responsivas para mobile, decidimos passar toda a aplicação para responsiva. Outra decisão foi implementar o SonarQube, para conseguirmos ver a porcentagem de cobertura de testes feita no backend. Também adicionamos o Cypress, para fazermos testes no frontend. Além disso, combinamos de adicionar a feature de acessibilidade para pessoas com deficiência visual. Por fim, ficamos de fazer os artefatos de AGES IV, que ainda não tínhamos feito.
+
+\indent O que eu fiz nessa sprint, primeiramente, foi criar as tarefas no board referente ao backend, que era o que eu estava cuidando. Comecei criando as tasks que haviam ficado de backlog da última sprint: arrumar a formatação do \ac{pdf} que estava um pouco errada, adicionar o footer da Hopeful no \ac{pdf} e melhorar as tarefas de testes, pois os guris me reclamaram que não estavam bem formuladas e não incluíam todas as rotas que deveriam ser testadas. Então fiz um gás final nessa última sprint e quebrei todas as tasks de testes bem quebradinhas, sendo cada tarefa um endpoint a ser testado, e deixei para o time pegar.
+
+\indent Sobre as tarefas que criamos fora do backlog, adicionei e configurei o SonarQube. Para isso, coloquei essa tarefa para o Ravel, pois ele disse que já havia feito antes e sabia como fazer. Quebrei também a tarefa para o André: colocar o Cypress no frontend e já criar um testezinho de exemplo. Criei também outra tarefa que era a mais "difícil" da sprint: a feature de esquecer a senha, que era composta pela criação de duas telas e pela lógica que faríamos no backend. Porém, só criei a tarefa do backend. E para essa tarefa eu me esforcei: na descrição, expliquei certinho como fazer, inclusive até a tabela do banco que teríamos que criar para armazenar esse token que iríamos mandar, pois ele tinha que ter um período para expirar. Essa task ficou muito boa mesmo. Inclusive, ela funcionou perfeitamente e ficou bem legal essa nova feature — tiramos um trabalho manual muito grande que o Abner iria ter que fazer.
+
+\indent Sobre a tarefa de acessibilidade, os guris criaram no frontend, porém ninguém tinha certeza do que poderíamos fazer. Então os guris que acabaram pegando ela acabaram fazendo tudo sozinhos: descobriram como fazer, qual ferramenta as pessoas com deficiência visual usavam para testar, e acabaram encontrando a ferramenta chamada "NVDA", que lê as páginas na internet se o site for pensado para isso. Mais ou menos como ela funciona: ela lê o nome da classe do HTML \cite{html} que o site coloca, então tiveram que adaptar para os nomes ficarem certos.
+
+\indent Outra coisa que fiz: já estávamos prontos para passar o projeto para o ambiente \ac{vps} da Kinghost \cite{kinghost}, inclusive já sabíamos o que fazer e como mexer, porém o Abner tinha que fazer a contratação do plano. Então, um dia pela manhã, fui até a sala do Abner no Tecnopuc e fiz a contratação da \ac{vps} juntamente com ele. Após isso, nos dias seguintes, já subimos o projeto na \ac{vps} para ficar com ele. Sobre a entrega, foi muito boa — o Abner ficou muito agradecido pelo projeto e por já estar pronto e usável no ambiente dele, tudo pronto. No final da sprint, conseguimos ficar com 91\% de testes no backend, pois existiam algumas rotas que tinham múltiplas condições e não conseguimos testar todas em tempo hábil, mas 91\% de todo o backend é um número muito bom. Acredito que o projeto inteiro foi um sucesso e a entrega foi muito boa.
+
+\indent Sobre os problemas encontrados durante a sprint, a \ac{vps} estava com HTTP, então ela estava feia para a entrega final. Resolvi eu mesmo colocar o Let's Encrypt \cite{letsencrypt}, junto com o Certbot \cite{certbot}, para fazer o HTTPS, igual havia feito na AGES passada. Outro problema foi que não conseguimos colocar o domínio que o Abner queria a tempo para a entrega final, então ficou essa dependência pendente.
+
+\indent As lições aprendidas nessa última sprint foram muito valiosas. Fui falar com o Abner e entender um pouco mais sobre o projeto que estávamos fazendo, então consegui ter a grandeza de como essa aplicação é importante para ele e o quanto esse projeto é importante para as pessoas do Brasil. Se toda cidade tivesse um bom plano de contingência, poderíamos ter salvado mais vidas na última fatalidade que aconteceu aqui no Sul. Além disso, aprendi muito sobre ser AGES IV na entrega final — quando você não é AGES IV, muitas vezes não se importa tanto com o projeto que vai entregar, mas quando tem essa posição, começa a dar outra importância a isso. A responsabilidade de entregar algo realmente funcional e útil para o cliente me fez crescer tanto profissionalmente quanto pessoalmente.
+
+\indent Como parte das responsabilidades de AGES IV, nós, o time de AGES IV, elaboramos os artefatos de gerenciamento de projeto para esta sprint. Esse processo demorou mais do que o esperado, pois só descobrimos nessa sprint final que teríamos que fazer esses entregáveis — em nenhuma das minhas AGES anteriores isso havia sido solicitado. Deixo aqui uma crítica construtiva para a disciplina: acredito que deveria ser padronizado os entregáveis de todos os projetos, pois me surpreendi ao descobrir essa exigência apenas no final. Apesar disso, conseguimos elaborar os documentos de forma colaborativa.
+
+\indent O primeiro artefato foi o Plano de Comunicação, apresentado na Tabela 2, que documenta todos os eventos de comunicação da equipe, incluindo as Daily meetings (realizadas às segundas e quartas às 17:30 e aos sábados às 14:00), a Sprint Review (ao final de cada sprint), o Sprint Planning (no início de cada sprint), a Sprint Retrospective (ao final de cada sprint) e a Apresentação Final (ao final do projeto). Cada evento tem seu responsável (AGES IV), envolvidos (AGES I, II, III e IV, além do Cliente nas apresentações), frequência e duração definidas.
+
+\begin{table}[H]
+\centering
+\caption{Plano de Comunicação}
+\begin{tabular}{|p{2cm}|p{4.5cm}|p{1.8cm}|p{1.8cm}|p{2cm}|p{1.5cm}|}
+\hline
+\textbf{Evento} & \textbf{Descrição} & \textbf{Responsável} & \textbf{Envolvidos} & \textbf{Frequência} & \textbf{Duração} \\
+\hline
+Daily & Encontro onde cada membro atualiza o time sobre o que fez desde a última Daily, se está com algum impedimento e o que fará a seguir. & AGES IV & AGES I, II, III e IV & Segundas e Quartas às 17:30 e Sábado às 14:00 & 15 minutos \\
+\hline
+Sprint Review & Apresentação das entregas realizadas e discussão acerca do escopo da próxima sprint. & AGES IV & AGES I, II, III, IV e Cliente & 1 vez no fim de cada Sprint & 1 hora \\
+\hline
+Sprint Planning & Encontro onde o time revisa o feedback do cliente e o backlog da sprint que se passou de forma a planejar o escopo da próxima sprint & AGES IV & AGES I, II, III e IV & 1 vez no começo de cada Sprint & 30 minutos \\
+\hline
+Sprint Retrospective & Momento dedicado à discussão entre a equipe acerca do que está sendo efetivo para o desenvolvimento da sprint e identificar problemas e melhorias a serem feitas. & AGES IV & AGES I, II, III e IV & 1 vez no fim de cada Sprint & 1 hora \\
+\hline
+Apresentação Final & Apresentação final da AGES, na qual o time deve apresentar o projeto realizado para todos outros membros da AGES. & AGES IV & AGES I, II, III e IV & 1 vez no fim do projeto & 10 minutos \\
+\hline
+\end{tabular}
+\label{tab:plano-comunicacao-ages4}
+\end{table}
+
+\indent O segundo artefato foi o Plano de Riscos, apresentado na Tabela 3, que identifica e documenta os principais riscos do projeto em sete categorias: Técnico (falhas em integrações ou \ac{api} externas mal documentadas), Cronograma (atrasos nas entregas e dependências entre times), Escopo (mudanças de requisitos pelo cliente), Infraestrutura (falhas de servidor ou banco de dados), Segurança (vazamento de dados), Qualidade (testes insuficientes e entregas com pouca cobertura de testes unitários e integrados) e Comunicação (falta de alinhamento e dificuldade de comunicação entre equipe e stakeholders). Para cada risco, foram definidos a probabilidade de ocorrência, o impacto no projeto, o nível de criticidade e as estratégias de mitigação ou controle, além dos planos de ação e contingência. Este artefato foi essencial para antecipar problemas e garantir que tivéssemos estratégias preparadas para lidar com possíveis contratempos durante o desenvolvimento.
+
+\begin{table}[H]
+\centering
+\caption{Plano de Riscos}
+\scriptsize
+\begin{tabular}{|p{1.5cm}|p{1.8cm}|p{2.5cm}|p{1.2cm}|p{1.2cm}|p{1cm}|p{1.5cm}|p{2.8cm}|}
+\hline
+\textbf{Categoria} & \textbf{Risco} & \textbf{Descrição} & \textbf{Probabilidade} & \textbf{Impacto} & \textbf{Nível} & \textbf{Estratégia} & \textbf{Plano de Ação / Contingência} \\
+\hline
+Técnico & Falhas em integrações & \ac{api} externas instáveis ou mal documentadas. & Alta & Média & Alto & Mitigar & Definir contratos de \ac{api} e mockar dados localmente para testes. Criar camada de fallback no backend. \\
+\hline
+Cronograma & Atrasos nas entregas & Estimativas imprecisas e dependências entre times. & Alta & Alta & Alto & Controlar & Dividir tarefas grandes em entregas menores; manter acompanhamento semanal e replanejar se necessário. \\
+\hline
+Escopo & Mudanças de requisitos & Alterações de funcionalidades pelo cliente. & Alta & Média & Alto & Controlar & Validar novas demandas em conjunto com o stakeholder e incluir apenas em sprints futuras. \\
+\hline
+Infraestrutura & Falhas de servidor ou banco de dados & Instabilidade de hospedagem ou perda de dados. & Média & Alta & Alto & Mitigar & Realizar backups automáticos e aplicar logs de erro. \\
+\hline
+Segurança & Vazamento de dados & Falhas em criptografia. & Baixa & Alta & Alto & Eliminar & Aplicar criptografia para dados sensíveis, tokens JWT, e limitar permissões por perfil. \\
+\hline
+Qualidade & Testes insuficientes & Entregas com pouca cobertura de testes unitários e integrados. & Média & Média & Médio & Melhorar & Adotar pipelines de CI com execução automática de testes e obrigatoriedade de cobertura mínima. \\
+\hline
+Comunicação & Falta de alinhamento & Dificuldade de comunicação entre equipe e stakeholders. & Média & Média & Médio & Mitigar & Manter reuniões curtas semanais, atualizar tarefas no Clickup e registrar decisões na Wiki. \\
+\hline
+\end{tabular}
+\label{tab:plano-riscos-ages4}
+\end{table}
